@@ -23,7 +23,11 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => 'required|min:5',
+            'summary' => 'required|max:50',
             'body' => 'required',
+            'slug' => 'string|unique',
+            'status' => 'required|in:draft,published,pending,archived',
+            'reading_time' => 'integer',
             'published_at' => 'nullable|date',
         ];
     }

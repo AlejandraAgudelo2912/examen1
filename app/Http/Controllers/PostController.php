@@ -54,6 +54,12 @@ class PostController extends Controller
     {
         $data = $request->validated();
 
+        if ($data['title'] !== $post->title) {
+            $data['slug'] = Str::slug($data['title']);
+        }
+        if ($data['body'] !== $post->body) {
+            $data['summary'] = Str::limit($data['body'], 50);
+        }
         $post->update($data);
 
         return to_route('posts.show', $post)
@@ -62,9 +68,6 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        if (!in_array($post->status, ['draft', 'pending'])) {
-            return redirect()->route('posts.index')->with('error', 'Solo se pueden eliminar posts con estado "borrador" o "pendiente".');
-        }
 
         $post->delete();
 
