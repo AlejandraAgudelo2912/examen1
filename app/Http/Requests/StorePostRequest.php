@@ -28,7 +28,7 @@ class StorePostRequest extends FormRequest
             'slug' => 'string|unique',
             'status' => 'required|in:draft,published,pending,archived',
             'reading_time' => 'integer',
-            'publish_at' => 'nullable|date',
+            'published_at' => 'nullable|date',
         ];
     }
 }
