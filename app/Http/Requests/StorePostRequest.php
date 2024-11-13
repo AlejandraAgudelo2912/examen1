@@ -22,9 +22,13 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|min:5',
-            'body' => 'required',
-            'published_at' => 'nullable|date',
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+            'summary' => 'nullable|string|max:50',
+            'slug' => 'nullable|string|unique:posts,slug',
+            'status' => 'required|in:published,draft,archived,pending',
+            'reading_time' => 'required|integer|min:1|max:60',
+            'publish_at' => 'nullable|date',
         ];
     }
 }
