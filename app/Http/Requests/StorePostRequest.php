@@ -24,10 +24,10 @@ class StorePostRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'body' => 'required|string',
-            'summary' => 'nullable|string|max:50',
-            'slug' => 'nullable|string|unique:posts,slug',
-            'status' => 'required|in:published,draft,archived,pending',
-            'reading_time' => 'required|integer|min:1|max:60',
+            'summary' => 'string|max:50',
+            'slug' => 'string|unique',
+            'status' => 'required',
+            'reading_time' => 'integer',
             'publish_at' => 'nullable|date',
         ];
     }
